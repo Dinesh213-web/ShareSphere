@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Campus Resource System</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+
+<!-- top navbar -->
+<nav class="navbar">
+  <div class="nav-brand" onclick="showPage('home')">
+    <i class="fas fa-university"></i> CampusRM
+  </div>
+
+  <div class="nav-links">
+    <a href="#" onclick="showPage('home')" id="navHome" class="nav-link active">Home</a>
+    <a href="#" onclick="showPage('resources')" id="navResources" class="nav-link">Resources</a>
+    <!-- only show these when logged in -->
+    <a href="#" onclick="showPage('myBookings')" id="navMyBookings" class="nav-link" style="display:none">My Bookings</a>
+    <a href="#" onclick="showPage('adminPanel')" id="navAdmin" class="nav-link" style="display:none">Admin</a>
+  </div>
+
+  <!-- show login/register buttons if not logged in -->
+  <div id="navAuth">
+    <button class="btn btn-outline" onclick="showPage('login')">Login</button>
+    <button class="btn btn-primary" onclick="showPage('register')">Register</button>
+  </div>
+
+  <!-- show this when logged in -->
+  <div id="navUser" style="display:none">
+    <span id="userGreeting"></span>
+    <button class="btn btn-outline" onclick="logout()">Logout</button>
+  </div>
+</nav>
+
+<div id="app">
+
+  <!-- HOME PAGE -->
+  <div id="page-home" class="page active">
+    <div class="hero">
+      <h1>Book Campus Resources <span class="highlight">Easily!</span></h1>
+      <p>Classrooms, labs, sports courts and more - all in one place</p>
+      <button class="btn btn-primary btn-lg" onclick="showPage('resources')">See Resources</button>
+      <button class="btn btn-outline btn-lg" onclick="showPage('register')">Get Started</button>
+    </div>
+
+    <!-- what we have section -->
+    <h2 style="text-align:center; margin:2rem 0 1rem">What You Can Book</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <h3>Classrooms</h3>
+        <p>Book rooms for your classes or study groups</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-flask"></i>
+        <h3>Labs</h3>
+        <p>Computer labs, chemistry labs etc</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-futbol"></i>
+        <h3>Sports</h3>
+        <p>Basketball courts, football ground and more</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-microphone"></i>
+        <h3>Auditoriums</h3>
+        <p>For events and big presentations</p>
+      </div>
+    </div>
+
+    <div class="stats-section">
+      <div class="stat-item">
+        <h2 id="statResources">0</h2>
+        <p>Resources Available</p>
+      </div>
+      <div class="stat-item">
+        <h2>24/7</h2>
+        <p>Book Anytime</p>
+      </div>
+      <div class="stat-item">
+        <h2>Free</h2>
+        <p>For All Students</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- RESOURCES PAGE -->
+  <div id="page-resources" class="page">
+    <h1>All Resources</h1>
+    <p>Click Book Now to reserve a resource</p>
+    <br>
+
+    <!-- search and filter -->
+    <div class="filter-bar">
+      <input type="text" id="searchInput" placeholder="Search by name..." onkeyup="filterResources()" class="search-input">
+      <select id="typeFilter" onchange="filterResources()" class="filter-select">
+        <option value="">All Types</option>
+        <option value="classroom">Classroom</option>
+        <option value="lab">Lab</option>
+        <option value="sports">Sports</option>
+        <option value="auditorium">Auditorium</option>
+      </select>
+    </div>
+
+    <div id="resourcesList" class="resources-grid">
+      <p>Loading resources...</p>
+    </div>
+  </div>
+
+
+  <!-- BOOKING PAGE - shown when user clicks book now -->
+  <div id="page-booking" class="page">
+    <button class="btn btn-outline" onclick="showPage('resources')">
+      <i class="fas fa-arrow-left"></i> Back
+    </button>
+    <h1>Book This Resource</h1>
+    <br>
+
+    <div class="booking-container">
+      <!-- resource info shows here -->
+      <div id="bookingResourceInfo" class="resource-info-card"></div>
+
+      <!-- booking form -->
+      <div class="booking-form-card">
+        <h2>Fill in the details</h2>
+
+        <div id="bookingError" class="error-msg" style="display:none"></div>
+        <div id="bookingSuccess" class="success-msg" style="display:none"></div>
+
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" id="bookingDate" class="form-input">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Start Time</label>
+            <input type="time" id="bookingStartTime" class="form-input">
+          </div>
+          <div class="form-group">
+            <label>End Time</label>
+            <input type="time" id="bookingEndTime" class="form-input">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Purpose (why do you need it?)</label>
+          <textarea id="bookingPurpose" class="form-input" rows="3" placeholder="eg. Group study session for exams"></textarea>
+        </div>
+
+        <button class="btn btn-primary btn-full" onclick="submitBooking()">Confirm Booking</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MY BOOKINGS PAGE -->
+  <div id="page-myBookings" class="page">
+    <h1>My Bookings</h1>
+    <p>Here are all the bookings you made</p>
+    <br>
+    <div id="myBookingsList" class="bookings-list">
+      <p>Loading...</p>
+    </div>
+  </div>
+
+
+  <!-- LOGIN PAGE -->
+  <div id="page-login" class="page">
+    <div class="auth-container">
+      <div class="auth-card">
+        <h2>Login</h2>
+        <p>Welcome back!</p>
+        <br>
+
+        <div id="loginError" class="error-msg" style="display:none"></div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="loginEmail" class="form-input" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPassword" class="form-input" placeholder="password">
+        </div>
+
+        <button class="btn btn-primary btn-full" onclick="login()">Login</button>
+        <br><br>
+        <p>No account? <a href="#" onclick="showPage('register')">Register here</a></p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- REGISTER PAGE -->
+  <div id="page-register" class="page">
+    <div class="auth-container">
+      <div class="auth-card">
+        <h2>Create Account</h2>
+        <p>Sign up to start booking</p>
+        <br>
+
+        <div id="registerError" class="error-msg" style="display:none"></div>
+
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="registerName" class="form-input" placeholder="Full name">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="registerEmail" class="form-input" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="registerPassword" class="form-input" placeholder="make a password">
+        </div>
+        <div class="form-group">
+          <label>I am a...</label>
+          <select id="registerRole" class="form-input">
+            <option value="student">Student</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary btn-full" onclick="register()">Register</button>
+        <br><br>
+        <p>Already registered? <a href="#" onclick="showPage('login')">Login</a></p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ADMIN PAGE -->
+  <div id="page-adminPanel" class="page">
+    <h1>Admin Panel</h1>
+    <p>Manage everything from here</p>
+    <br>
+
+    <div class="admin-tabs">
+      <button class="tab-btn active" onclick="switchAdminTab('resources')">Resources</button>
+      <button class="tab-btn" onclick="switchAdminTab('bookings')">All Bookings</button>
+    </div>
+
+    <!-- add resource form -->
+    <div id="adminResourcesTab" class="tab-content active">
+      <div class="admin-add-section">
+        <h2>Add a New Resource</h2>
+
+        <div id="adminResourceError" class="error-msg" style="display:none"></div>
+        <div id="adminResourceSuccess" class="success-msg" style="display:none"></div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="adminName" class="form-input" placeholder="eg. CS Lab A">
+          </div>
+          <div class="form-group">
+            <label>Type</label>
+            <select id="adminType" class="form-input">
+              <option value="classroom">Classroom</option>
+              <option value="lab">Lab</option>
+              <option value="sports">Sports</option>
+              <option value="auditorium">Auditorium</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Capacity (how many people)</label>
+            <input type="number" id="adminCapacity" class="form-input" placeholder="50">
+          </div>
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" id="adminLocation" class="form-input" placeholder="Block A, Floor 2">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Description (optional)</label>
+          <textarea id="adminDescription" class="form-input" rows="2" placeholder="Write something about this resource"></textarea>
+        </div>
+
+        <button class="btn btn-primary" onclick="addResource()">Add Resource</button>
+      </div>
+
+      <h2 style="margin:1.5rem 0 1rem">All Resources</h2>
+      <div id="adminResourcesList" class="admin-table-container">
+        <p>Loading...</p>
+      </div>
+    </div>
+
+    <!-- all bookings table -->
+    <div id="adminBookingsTab" class="tab-content">
+      <h2>All Student Bookings</h2>
+      <br>
+      <div id="adminBookingsList" class="admin-table-container">
+        <p>Loading...</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end of app -->
+
+<footer class="footer">
+  <p>Campus Resource System - made with Node.js and MongoDB</p>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
