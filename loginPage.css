@@ -1,0 +1,38 @@
+body{
+    background-color: blue;
+    color:white;
+    text-align:center;
+}
+
+.submit-btn {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 200px;
+}
+
+.form-input {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color:black;
+    font-style: italic;
+}
+
+
+form{
+    display:inline-block;
+    padding:30px;
+    background:white;
+    color:black;
+    border-radius:10px;
+}
