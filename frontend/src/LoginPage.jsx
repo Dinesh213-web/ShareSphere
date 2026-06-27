@@ -2,49 +2,49 @@ import './LoginPage.css';
 
 function LoginPage() {
   return (
-    <div>
-      <h1>WELCOME</h1>
+    <div className="container">
 
-      <form>
+      <div className="login-box">
 
-        <label>Username:</label>
-        <br />
-
-        <input
-          className="form-input"
-          type="text"
-          placeholder="Username"
-        />
-
-        <br />
-        <br />
-
-        <label>Password:</label>
-        <br />
-
-        <input
-          className="form-input"
-          type="password"
-          placeholder="Password"
-        />
-
-        <br />
-        <br />
-
-        <button className="submit-btn">
-          Login
-        </button>
-
-        <p className="forgot-password">
-          <a href="#">Forgot Password?</a>
+        <h1>ShareSphere</h1>
+        <p className="subtitle">
+          Share Educational Resources Across Campus
         </p>
 
-        <p>
-          Don't have an account?
-          <a href="#"> Sign Up</a>
-        </p>
+        <form>
 
-      </form>
+          <label>Roll Number</label>
+
+          <input
+            className="form-input"
+            type="text"
+            placeholder="Enter Roll Number"
+          />
+
+          <label>Password</label>
+
+          <input
+            className="form-input"
+            type="password"
+            placeholder="Enter Password"
+          />
+
+          <button className="submit-btn">
+            Login
+          </button>
+
+          <p className="forgot-password">
+            Forgot Password?
+          </p>
+
+          <p className="signup">
+            New to ShareSphere?
+            <a href="#"> Register</a>
+          </p>
+
+        </form>
+
+      </div>
 
     </div>
   );

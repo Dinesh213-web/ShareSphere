@@ -1,60 +1,110 @@
 import { useNavigate } from "react-router-dom";
-import "./home.css";
+import "./Home.css";
 
 function Home() {
+
   const navigate = useNavigate();
 
   return (
-    <div className="home-container"> 
 
-      {/* Navbar */}
+    <div className="home-container">
+
       <nav className="navbar">
+
         <h2 className="logo">ShareSphere</h2>
+
         <div className="nav-links">
-          <button onClick={() => navigate("/login")}>Login</button>
-          <button onClick={() => navigate("/signup")}>Sign Up</button>
+
+          <button onClick={() => navigate("/login")}>
+            Login
+          </button>
+
+          <button onClick={() => navigate("/signup")}>
+            Register
+          </button>
+
         </div>
+
       </nav>
 
-      {/* Hero Section */}
-      <div className="hero">
-        <h1>Share Resources with Your Community</h1>
-        <p>Borrow and lend items easily. Join ShareSphere today!</p>
-        <button className="get-started-btn" onClick={() => navigate("/signup")}>
+      <section className="hero">
+
+        <h1>
+          Share Academic Resources Across Campus
+        </h1>
+
+        <p>
+          Borrow calculators, drafters, lab equipment,
+          books and project materials from fellow students.
+        </p>
+
+        <button
+          className="get-started-btn"
+          onClick={() => navigate("/signup")}
+        >
           Get Started
         </button>
-      </div>
 
-      {/* Features Section */}
-      <div className="features">
-        <h2>What You Can Do</h2>
+      </section>
+
+      <section className="features">
+
+        <h2>Why ShareSphere?</h2>
+
         <div className="feature-cards">
 
           <div className="card">
-            <h3>📦 Add Resources</h3>
-            <p>List items you own and are willing to share with others.</p>
+
+            <h3>🧮 Calculators</h3>
+
+            <p>
+              Share scientific calculators
+              with students who need them.
+            </p>
+
           </div>
 
           <div className="card">
-            <h3>🔍 Browse Items</h3>
-            <p>Find resources posted by people in your community.</p>
+
+            <h3>📐 Drawing Tools</h3>
+
+            <p>
+              Borrow drafters, mini drafters
+              and engineering instruments.
+            </p>
+
           </div>
 
           <div className="card">
-            <h3>🤝 Borrow & Lend</h3>
-            <p>Send borrow requests and manage them from your dashboard.</p>
+
+            <h3>🔬 Lab Equipment</h3>
+
+            <p>
+              Access lab coats, kits,
+              electronics boards and devices.
+            </p>
+
+          </div>
+
+          <div className="card">
+
+            <h3>🤝 Borrow Requests</h3>
+
+            <p>
+              Request resources and manage
+              approvals easily.
+            </p>
+
           </div>
 
         </div>
-      </div>
 
-      {/* Footer */}
-      <footer className="footer">
-        <p>© 2026 ShareSphere. Made with ❤️ for communities.</p>
-      </footer>
+      </section>
 
     </div>
+
   );
+
 }
 
 export default Home;
