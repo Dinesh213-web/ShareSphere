@@ -4,11 +4,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const dns = require("dns");
+const path = require("path");
+const cors = require("cors");
 const User = require("./models/User");
 const Resource = require("./models/Resource");
 const Borrow = require("./models/Borrow");
 
-dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 // Configure DNS and Connect to Database
 const connectDB = async () => {
@@ -39,6 +41,8 @@ const connectDB = async () => {
 };
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 

@@ -19,8 +19,8 @@ function Home() {
             Login
           </button>
 
-          <button onClick={() => navigate("/signup")}>
-            Register
+          <button onClick={() => navigate("/Signup")}>
+            Signup
           </button>
 
         </div>
@@ -40,7 +40,7 @@ function Home() {
 
         <button
           className="get-started-btn"
-          onClick={() => navigate("/signup")}
+          onClick={() => navigate("/Signup")}
         >
           Get Started
         </button>

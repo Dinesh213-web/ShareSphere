@@ -1,45 +1,153 @@
-import './LoginPage.css';
+import { useState } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import "./LoginPage.css";
 
 function LoginPage() {
+
+  const navigate = useNavigate();
+
+  const [form, setForm] = useState({
+    rollNumber: "",
+    password: ""
+  });
+
+  const handleChange = (e) => {
+
+    setForm({
+
+      ...form,
+
+      [e.target.name]: e.target.value
+
+    });
+
+  };
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+    try {
+
+      const res = await axios.post(
+
+        "http://localhost:3000/login",
+
+        form
+
+      );
+
+      localStorage.setItem(
+
+        "user",
+
+        JSON.stringify(res.data.user)
+
+      );
+
+      localStorage.setItem(
+
+        "token",
+
+        res.data.token
+
+      );
+
+      
+
+      navigate("/dashboard");
+
+    }
+
+    catch (error) {
+
+      alert(error.response?.data?.message);
+
+    }
+
+  };
+
   return (
-    <div className="container">
+
+    <div className="login-container">
 
       <div className="login-box">
 
         <h1>ShareSphere</h1>
+
         <p className="subtitle">
+
           Share Educational Resources Across Campus
+
         </p>
 
-        <form>
+        <form onSubmit={handleSubmit}>
 
           <label>Roll Number</label>
 
           <input
+
             className="form-input"
+
             type="text"
+
+            name="rollNumber"
+
             placeholder="Enter Roll Number"
+
+            value={form.rollNumber}
+
+            onChange={handleChange}
+
+            required
+
           />
 
           <label>Password</label>
 
           <input
+
             className="form-input"
+
             type="password"
+
+            name="password"
+
             placeholder="Enter Password"
+
+            value={form.password}
+
+            onChange={handleChange}
+
+            required
+
           />
 
-          <button className="submit-btn">
+          <button
+
+            className="submit-btn"
+
+            type="submit"
+
+          >
+
             Login
+
           </button>
 
           <p className="forgot-password">
+
             Forgot Password?
+
           </p>
 
           <p className="signup">
+
             New to ShareSphere?
-            <a href="#"> Register</a>
+
+            <Link to="/signup"> Register</Link>
+
           </p>
 
         </form>
@@ -47,7 +155,9 @@ function LoginPage() {
       </div>
 
     </div>
+
   );
+
 }
 
 export default LoginPage;

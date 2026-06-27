@@ -1,9 +1,9 @@
 body{
     margin:0;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: 'Outfit', Arial, Helvetica, sans-serif;
 }
 
-.container{
+.login-container{
 
     height:100vh;
 
@@ -39,7 +39,7 @@ body{
 
 }
 
-.subtitle{
+.login-box .subtitle{
 
     text-align:center;
 
@@ -49,7 +49,7 @@ body{
 
 }
 
-label{
+.login-box label{
 
     display:block;
 
@@ -73,7 +73,7 @@ label{
 
 }
 
-.submit-btn{
+.login-box .submit-btn{
 
     width:100%;
 
@@ -95,13 +95,13 @@ label{
 
 }
 
-.submit-btn:hover{
+.login-box .submit-btn:hover{
 
     background:#1E40AF;
 
 }
 
-.forgot-password{
+.login-box .forgot-password{
 
     text-align:center;
 
@@ -111,13 +111,13 @@ label{
 
 }
 
-.signup{
+.login-box .signup{
 
     text-align:center;
 
 }
 
-.signup a{
+.login-box .signup a{
 
     color:#2563EB;
 

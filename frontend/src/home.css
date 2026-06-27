@@ -6,7 +6,7 @@
 
 body{
 
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: 'Outfit', Arial, Helvetica, sans-serif;
 
   background:#f4f6f9;
 
@@ -126,7 +126,7 @@ body{
 
 }
 
-.card{
+.home-container .card{
 
   width:260px;
 
@@ -140,7 +140,7 @@ body{
 
 }
 
-.card h3{
+.home-container .card h3{
 
   margin-bottom:15px;
 

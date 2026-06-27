@@ -1,0 +1,112 @@
+.browse{
+
+padding:40px;
+
+background:#f4f6f8;
+
+min-height:100vh;
+
+}
+
+.browse h1{
+
+text-align:center;
+
+margin-bottom:30px;
+
+color:#2563eb;
+
+}
+
+.cards{
+
+display:flex;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+.card{
+
+background:white;
+
+padding:20px;
+
+width:280px;
+
+border-radius:12px;
+
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+
+}
+
+.card h2{
+
+margin-bottom:10px;
+
+color:#2563eb;
+
+}
+
+.card p{
+
+margin:8px 0;
+
+}   
+
+.card button{
+
+width:100%;
+
+padding:10px;
+
+background:#2563eb;
+
+color:white;
+
+border:none;
+
+border-radius:6px;
+
+cursor:pointer;
+
+margin-top:15px;
+
+}
+.borrow-btn{
+    width:100%;
+    padding:10px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.borrow-btn:hover{
+    background:#1e40af;
+}
+
+.borrow-btn:disabled{
+    background:#999;
+    cursor:not-allowed;
+}
+.card button:hover{
+
+background:#1e40af;
+
+}
+.available{
+   color:#16a34a;
+   font-weight:bold;
+}
+
+.borrowed{
+   color:#dc2626;
+   font-weight:bold;
+}
