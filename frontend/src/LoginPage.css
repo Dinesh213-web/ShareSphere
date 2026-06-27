@@ -1,0 +1,55 @@
+body{
+    margin:0;
+    background-color:rgb(27, 137, 171);
+    text-align:center;
+}
+
+form{
+    display:inline-block;
+    margin-top:60px;
+    padding:30px;
+
+    background:white;
+
+    color:black;
+
+    border-radius:10px;
+}
+
+.form-input{
+
+    width:250px;
+
+    padding:10px;
+
+    border-radius:5px;
+
+    border:1px solid gray;
+
+}
+
+.submit-btn{
+
+    width:270px;
+
+    padding:10px;
+
+    background:#4CAF50;
+
+    color:white;
+
+    border:none;
+
+    border-radius:5px;
+
+    cursor:pointer;
+
+}
+
+h1{
+
+    color:white;
+
+    margin-top:50px;
+
+}
