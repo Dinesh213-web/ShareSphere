@@ -33,6 +33,8 @@ const connectDB = async () => {
   }
 
   try {
+    const safeUri = mongoUri ? mongoUri.replace(/:([^:@]+)@/, ":*****@") : "undefined";
+    console.log(`Connecting to MongoDB URI (length ${mongoUri ? mongoUri.length : 0}): ${safeUri}`);
     await mongoose.connect(mongoUri);
     console.log("Database Connected");
   } catch (err) {
