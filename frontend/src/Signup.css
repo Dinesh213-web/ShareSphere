@@ -203,3 +203,27 @@
         display: none;
     }
 }
+
+.error-message {
+    background-color: #fee2e2;
+    border: 1px solid #fca5a5;
+    color: #b91c1c;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.success-message {
+    background-color: #dcfce7;
+    border: 1px solid #86efac;
+    color: #15803d;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 500;
+}

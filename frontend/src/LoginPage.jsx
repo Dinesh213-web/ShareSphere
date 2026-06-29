@@ -1,71 +1,53 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 
 function LoginPage() {
-
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
     rollNumber: "",
     password: ""
   });
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
-
+    setError("");
     setForm({
-
       ...form,
-
       [e.target.name]: e.target.value
-
     });
-
   };
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
-
     try {
-
       const res = await axios.post(
-
         "http://localhost:3000/login",
-
         form
-
       );
 
       localStorage.setItem(
-
         "user",
-
         JSON.stringify(res.data.user)
-
       );
 
       localStorage.setItem(
-
         "token",
-
         res.data.token
-
       );
-
-      
 
       navigate("/dashboard");
-
+    } catch (err) {
+      setError(err.response?.data?.message || "Login failed. Please check your credentials.");
     }
-
-    catch (error) {
-
-      alert(error.response?.data?.message);
-
-    }
-
   };
 
   return (
@@ -81,6 +63,8 @@ function LoginPage() {
           Share Educational Resources Across Campus
 
         </p>
+
+        {error && <div className="error-message">{error}</div>}
 
         <form onSubmit={handleSubmit}>
 

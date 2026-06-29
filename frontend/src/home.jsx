@@ -1,30 +1,47 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
 function Home() {
-
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("token"));
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    setIsLoggedIn(false);
+  };
 
   return (
-
     <div className="home-container">
-
       <nav className="navbar">
-
-        <h2 className="logo">ShareSphere</h2>
-
+        <h2 className="logo" onClick={() => navigate(isLoggedIn ? "/dashboard" : "/")}>
+          ShareSphere
+        </h2>
         <div className="nav-links">
-
-          <button onClick={() => navigate("/login")}>
-            Login
-          </button>
-
-          <button onClick={() => navigate("/Signup")}>
-            Signup
-          </button>
-
+          {isLoggedIn ? (
+            <>
+              <button className="dashboard-btn" onClick={() => navigate("/dashboard")}>
+                Dashboard
+              </button>
+              <button className="logout-btn" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <button onClick={() => navigate("/login")}>
+                Login
+              </button>
+              <button onClick={() => navigate("/signup")}>
+                Signup
+              </button>
+            </>
+          )}
         </div>
-
       </nav>
 
       <section className="hero">
@@ -40,7 +57,7 @@ function Home() {
 
         <button
           className="get-started-btn"
-          onClick={() => navigate("/Signup")}
+          onClick={() => navigate(isLoggedIn ? "/dashboard" : "/signup")}
         >
           Get Started
         </button>
