@@ -22,8 +22,12 @@
   letter-spacing: 0.5px;
 }
 
-.logo-icon {
-  font-size: 22px;
+.navbar-logo-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
 }
 
 .menu-toggle {

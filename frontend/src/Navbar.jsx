@@ -19,7 +19,7 @@ function Navbar() {
   return (
     <nav className="navbar-container">
       <div className="navbar-brand" onClick={() => navigate("/dashboard")}>
-        <span className="logo-icon">🌐</span> ShareSphere
+        <img src="/logo.jpg" alt="ShareSphere Logo" className="navbar-logo-img" /> ShareSphere
       </div>
 
       <button className="menu-toggle" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Navigation">

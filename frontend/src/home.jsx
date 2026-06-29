@@ -18,7 +18,8 @@ function Home() {
   return (
     <div className="home-container">
       <nav className="navbar">
-        <h2 className="logo" onClick={() => navigate(isLoggedIn ? "/dashboard" : "/")}>
+        <h2 className="logo" onClick={() => navigate(isLoggedIn ? "/dashboard" : "/")} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <img src="/logo.jpg" alt="ShareSphere Logo" style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover' }} />
           ShareSphere
         </h2>
         <div className="nav-links">
