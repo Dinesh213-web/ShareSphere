@@ -19,7 +19,7 @@ function MyResources() {
   useEffect(() => {
     const fetchMyResources = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/resources");
+        const res = await axios.get("/resources");
         const mine = res.data.filter(
           item => item.ownerRollNumber === user.rollNumber
         );
@@ -43,7 +43,7 @@ function MyResources() {
 
     try {
       setMessage({ type: "", text: "" });
-      await axios.delete(`http://localhost:3000/resource/${id}`);
+      await axios.delete(`/resource/${id}`);
       
       // Update state instantly without reload
       setResources(prev => prev.filter(item => item._id !== id));
@@ -78,7 +78,7 @@ function MyResources() {
   const handleSaveEdit = async (id) => {
     try {
       setMessage({ type: "", text: "" });
-      const res = await axios.put(`http://localhost:3000/resource/${id}`, editForm);
+      const res = await axios.put(`/resource/${id}`, editForm);
       
       // Update state instantly without reload
       setResources(prev =>

@@ -12,7 +12,7 @@ function BorrowRequests() {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/borrow-requests");
+        const res = await axios.get("/borrow-requests");
         setRequests(res.data);
       } catch (err) {
         setMessage({ type: "error", text: "Failed to load borrow requests." });
@@ -31,7 +31,7 @@ function BorrowRequests() {
   const approve = async (id) => {
     try {
       setMessage({ type: "", text: "" });
-      await axios.put(`http://localhost:3000/borrow/${id}/approve`);
+      await axios.put(`/borrow/${id}/approve`);
       
       // Update state instantly without page refresh
       setRequests((prev) =>
@@ -51,7 +51,7 @@ function BorrowRequests() {
   const reject = async (id) => {
     try {
       setMessage({ type: "", text: "" });
-      await axios.put(`http://localhost:3000/borrow/${id}/reject`);
+      await axios.put(`/borrow/${id}/reject`);
       
       // Update state instantly without page refresh
       setRequests((prev) =>

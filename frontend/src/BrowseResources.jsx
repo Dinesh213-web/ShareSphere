@@ -14,8 +14,8 @@ function BrowseResources() {
     const fetchData = async () => {
       try {
         const [resResources, resBorrows] = await Promise.all([
-          axios.get("http://localhost:3000/resources"),
-          axios.get("http://localhost:3000/borrow-requests")
+          axios.get("/resources"),
+          axios.get("/borrow-requests")
         ]);
 
         setResources(resResources.data);
@@ -48,7 +48,7 @@ function BrowseResources() {
       // Instantly disable button visually in UI
       setRequestedIds(prev => [...prev, id]);
 
-      await axios.post("http://localhost:3000/borrow", {
+      await axios.post("/borrow", {
         resourceId: id,
         borrowerRollNumber: user.rollNumber
       });

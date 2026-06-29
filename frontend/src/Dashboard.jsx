@@ -20,8 +20,8 @@ function Dashboard() {
     const fetchDashboardData = async () => {
       try {
         const [resResources, resBorrows] = await Promise.all([
-          axios.get("http://localhost:3000/resources"),
-          axios.get("http://localhost:3000/borrow-requests")
+          axios.get("/resources"),
+          axios.get("/borrow-requests")
         ]);
 
         const resources = resResources.data;

@@ -79,7 +79,7 @@ function Signup() {
     }
 
     try {
-      const res = await axios.post("http://localhost:3000/register", {
+      const res = await axios.post("/register", {
         name: name.trim(),
         email: email.trim().toLowerCase(),
         rollNumber: rollNumber.trim().toUpperCase(),

@@ -60,7 +60,7 @@ function AddResource() {
 
     try {
       setLoading(true);
-      await axios.post("http://localhost:3000/add-resource", {
+      await axios.post("/add-resource", {
         title: title.trim(),
         category: category.trim(),
         description: description.trim(),
