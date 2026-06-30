@@ -100,13 +100,17 @@ app.post("/register", async (req, res) => {
       });
     }
 
-    const existingUser = await User.findOne({
-      $or: [{ email }, { rollNumber }],
-    });
-
-    if (existingUser) {
+    const emailExists = await User.findOne({ email });
+    if (emailExists) {
       return res.status(400).json({
-        message: "Email or Roll Number already exists.",
+        message: "Email already exists.",
+      });
+    }
+
+    const rollNumberExists = await User.findOne({ rollNumber });
+    if (rollNumberExists) {
+      return res.status(400).json({
+        message: "Roll Number already exists.",
       });
     }
 
